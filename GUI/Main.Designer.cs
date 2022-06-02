@@ -53,7 +53,7 @@ namespace Library_kurs.GUI
             this.cmbReaders.FormattingEnabled = true;
             this.cmbReaders.Location = new System.Drawing.Point(12, 46);
             this.cmbReaders.Name = "cmbReaders";
-            this.cmbReaders.Size = new System.Drawing.Size(174, 23);
+            this.cmbReaders.Size = new System.Drawing.Size(271, 23);
             this.cmbReaders.TabIndex = 2;
             this.cmbReaders.SelectedValueChanged += new System.EventHandler(this.cmbReaders_SelectedValueChanged);
             // 
@@ -68,7 +68,7 @@ namespace Library_kurs.GUI
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(590, 375);
+            this.button2.Location = new System.Drawing.Point(329, 375);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(143, 23);
             this.button2.TabIndex = 7;
@@ -90,13 +90,13 @@ namespace Library_kurs.GUI
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(869, 265);
+            this.dataGridView1.Size = new System.Drawing.Size(623, 265);
             this.dataGridView1.TabIndex = 9;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(796, 46);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(560, 45);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 10;
@@ -107,7 +107,7 @@ namespace Library_kurs.GUI
             // button4
             // 
             this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(752, 375);
+            this.button4.Location = new System.Drawing.Point(506, 375);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(129, 23);
             this.button4.TabIndex = 11;
@@ -119,7 +119,7 @@ namespace Library_kurs.GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 410);
+            this.ClientSize = new System.Drawing.Size(660, 410);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.dataGridView1);
@@ -128,7 +128,7 @@ namespace Library_kurs.GUI
             this.Controls.Add(this.cmbReaders);
             this.Controls.Add(this.label1);
             this.Name = "Main";
-            this.Text = "Main";
+            this.Text = "Главное окно";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

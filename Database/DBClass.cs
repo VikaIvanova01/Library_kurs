@@ -156,5 +156,41 @@ WHERE Reader.idReader = {readerId} and Type_record = 'открыта'
 
             return list;
         }
+
+        public static List<DataClasses.MessageInfo> GetMessageInfo()
+        {
+            connect();
+            cmd = new SqliteCommand($@"
+SELECT Reader.FIO, Reader.Date_of_birth, Reader.Email, Book.Name, Author.FIO, Genre.Name_genre, Message_type.Mes_type, Departure_date
+FROM Message
+LEFT JOIN Issue_Record ON Issue_Record.idIssue_Record = Message.Issue_Record_idIssue_Record
+LEFT JOIN Book ON  Book.idBook = Issue_Record.Book_idBook
+LEFT JOIN Reader ON  Reader.idReader = Issue_Record.Reader_idReader
+LEFT JOIN Author ON Author.idAuthor = Book.Author_idAuthor
+LEFT JOIN Genre ON Genre.idGenre = Book.Genre_idGenre
+LEFT JOIN Message_type ON Message_type.idMessage_type=Message.Message_type_idMessage_type
+", conn);
+            var reader = cmd.ExecuteReader();
+            var list = new List<DataClasses.MessageInfo>();
+
+            while (reader.Read())
+            {
+                list.Add(new DataClasses.MessageInfo
+                {
+                    ReaderFIO = reader.GetValue(0).ToString(),
+                    Date_of_birth = reader.GetValue(1).ToString(),
+                    Email = reader.GetValue(2).ToString(),
+                    Name = reader.GetValue(3).ToString(),
+                    AuthorFIO = reader.GetValue(4).ToString(),
+                    Genre = reader.GetValue(5).ToString(),
+                    MessageType = reader.GetValue(6).ToString(),
+                    Departure_date = DateTime.ParseExact(reader.GetValue(7).ToString(), "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
+                });
+            }
+
+            close();
+
+            return list;
+        }
     }
 }

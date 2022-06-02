@@ -37,14 +37,7 @@ namespace Library_kurs.GUI
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.FIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Book = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,9 +53,9 @@ namespace Library_kurs.GUI
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(300, 134);
+            this.button1.Location = new System.Drawing.Point(537, 69);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 30);
+            this.button1.Size = new System.Drawing.Size(81, 23);
             this.button1.TabIndex = 14;
             this.button1.Text = "Найти";
             this.button1.UseVisualStyleBackColor = true;
@@ -80,23 +73,23 @@ namespace Library_kurs.GUI
             // 
             this.dateTimePicker1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(14, 70);
+            this.dateTimePicker1.Location = new System.Drawing.Point(15, 70);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(92, 23);
             this.dateTimePicker1.TabIndex = 12;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(14, 134);
+            this.richTextBox1.Location = new System.Drawing.Point(271, 70);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(168, 30);
+            this.richTextBox1.Size = new System.Drawing.Size(199, 23);
             this.richTextBox1.TabIndex = 11;
             this.richTextBox1.Text = "";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 107);
+            this.label2.Location = new System.Drawing.Point(271, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 15);
             this.label2.TabIndex = 10;
@@ -113,67 +106,36 @@ namespace Library_kurs.GUI
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.FIO,
-            this.DateBirth,
-            this.Email,
-            this.Book,
-            this.Author,
-            this.Genre,
-            this.TypeMessage,
-            this.Date});
-            this.dataGridView1.Location = new System.Drawing.Point(14, 186);
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView1.Location = new System.Drawing.Point(15, 127);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(844, 227);
             this.dataGridView1.TabIndex = 8;
             // 
-            // FIO
+            // button3
             // 
-            this.FIO.HeaderText = "ФИО читателя";
-            this.FIO.Name = "FIO";
-            // 
-            // DateBirth
-            // 
-            this.DateBirth.HeaderText = "Дата рождения";
-            this.DateBirth.Name = "DateBirth";
-            // 
-            // Email
-            // 
-            this.Email.HeaderText = "Эл.почта";
-            this.Email.Name = "Email";
-            // 
-            // Book
-            // 
-            this.Book.HeaderText = "Название книги";
-            this.Book.Name = "Book";
-            // 
-            // Author
-            // 
-            this.Author.HeaderText = "Автор книги";
-            this.Author.Name = "Author";
-            // 
-            // Genre
-            // 
-            this.Genre.HeaderText = "Жанр книги";
-            this.Genre.Name = "Genre";
-            // 
-            // TypeMessage
-            // 
-            this.TypeMessage.HeaderText = "Тип сообщения";
-            this.TypeMessage.Name = "TypeMessage";
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Дата отправки";
-            this.Date.Name = "Date";
+            this.button3.Location = new System.Drawing.Point(690, 373);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(168, 23);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "Отправить сообщение";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // ReportSent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 450);
+            this.ClientSize = new System.Drawing.Size(880, 450);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker2);
@@ -200,13 +162,6 @@ namespace Library_kurs.GUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateBirth;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Book;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Author;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Genre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TypeMessage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.Button button3;
     }
 }

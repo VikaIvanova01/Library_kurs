@@ -9,10 +9,13 @@ namespace Library_kurs.DataClasses
 {
     public class Book
     {
-        [DisplayName("ИД книги")]
+        [DisplayName("Регистрационный номер книги")]
         public int id { get; set; }
+        [DisplayName("Название книги")]
         public string name { get; set; }
+        [DisplayName("Автор книги")]
         public string author { get; set; }
+        [DisplayName("Жанр книги")]
         public string genre { get; set; }
     }
 }

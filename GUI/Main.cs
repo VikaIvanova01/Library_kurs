@@ -25,15 +25,10 @@ namespace Library_kurs.GUI
             cmbReaders.DisplayMember = "FIO";
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             ReportSent a = new();
-            Close();
+            a.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -43,12 +38,6 @@ namespace Library_kurs.GUI
             form.ShowDialog();
             LoadCurrentReaderBooks();
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
 
         private void LoadCurrentReaderBooks()
         {

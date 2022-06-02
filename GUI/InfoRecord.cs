@@ -29,9 +29,7 @@ namespace Library_kurs.GUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Main f = new();
-            f.Show();
-            Close();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void button2_Click(object sender, EventArgs e)

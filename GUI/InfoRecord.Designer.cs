@@ -37,7 +37,7 @@ namespace Library_kurs.GUI
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(415, 12);
+            this.button1.Location = new System.Drawing.Point(374, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -47,11 +47,11 @@ namespace Library_kurs.GUI
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(190, 323);
+            this.button2.Location = new System.Drawing.Point(176, 322);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(129, 38);
+            this.button2.Size = new System.Drawing.Size(129, 28);
             this.button2.TabIndex = 13;
-            this.button2.Text = "Вернуть книгу";
+            this.button2.Text = "Выдать";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -64,19 +64,19 @@ namespace Library_kurs.GUI
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(478, 256);
+            this.dataGridView1.Size = new System.Drawing.Size(437, 256);
             this.dataGridView1.TabIndex = 14;
             // 
             // InfoRecord
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 381);
+            this.ClientSize = new System.Drawing.Size(461, 362);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "InfoRecord";
-            this.Text = "Информация о записи";
+            this.Text = "Выдача книги";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
