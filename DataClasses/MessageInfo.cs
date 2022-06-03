@@ -23,7 +23,10 @@ namespace Library_kurs.DataClasses
         public String Genre { get; set; }
         [DisplayName("Тип сообщения")]
         public String MessageType { get; set; }
+        [DisplayName("Дата возврата")]
+        public DateTime Return_date { get; set; }
         [DisplayName("Дата отправки")]
         public DateTime Departure_date { get; set; }
+
     }
 }

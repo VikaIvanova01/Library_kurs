@@ -31,7 +31,7 @@ namespace Library_kurs.Database
             }
         }
 
-        public static List<DataClasses.Reader> GetReaders()
+        public static List<DataClasses.Reader> GetReaders(bool withEmpty=false)
         {
             connect();
 
@@ -43,6 +43,15 @@ ORDER BY FIO
 
             var reader = cmd.ExecuteReader();
             var list = new List<DataClasses.Reader>();
+
+            if (withEmpty)
+            {
+                list.Add(new DataClasses.Reader
+                {
+                    id = -1,
+                    FIO = "---"
+                });
+            }
 
             while (reader.Read())
             {
@@ -157,11 +166,65 @@ WHERE Reader.idReader = {readerId} and Type_record = 'открыта'
             return list;
         }
 
-        public static List<DataClasses.MessageInfo> GetMessageInfo()
+        public static void DepartureMessages()
         {
             connect();
             cmd = new SqliteCommand($@"
-SELECT Reader.FIO, Reader.Date_of_birth, Reader.Email, Book.Name, Author.FIO, Genre.Name_genre, Message_type.Mes_type, Departure_date
+SELECT Issue_Record.idIssue_Record, Return_date
+FROM Issue_Record
+WHERE  Type_record = 'открыта'
+", conn);
+
+            var reader = cmd.ExecuteReader();
+            var list = new List<DataClasses.IssueRecordInfo>();
+
+            while (reader.Read())
+            {
+                list.Add(new DataClasses.IssueRecordInfo
+                {
+                    id = int.Parse(reader.GetValue(0).ToString()),
+                    Return_date = DateTime.ParseExact(reader.GetValue(1).ToString(), "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
+                });
+            }
+
+            var departureDate = DateTime.Now.ToString("dd.MM.yyyy");
+
+            foreach(var issueRecord in list)
+            {
+                var days = (DateTime.Now - issueRecord.Return_date).TotalDays;
+                var messageType = 0;
+                if (days >= 7)
+                    messageType = 4;
+                else if (days >= 0)
+                    messageType = 3;
+                else if (days >= -3)
+                    messageType = 2;
+
+                if (messageType == 0)
+                    continue;
+
+
+                cmd = new SqliteCommand(@$"
+SELECT count(*)
+FROM Message
+WHERE Issue_Record_idIssue_Record = {issueRecord.id} and Message_type_idMessage_type = {messageType}",
+conn);
+                if ((Int64)cmd.ExecuteScalar() > 0)
+                    continue;
+
+                cmd = new SqliteCommand($@"
+INSERT INTO Message( Message_type_idMessage_type,  Issue_Record_idIssue_Record, Departure_date)
+VALUES({messageType}, {issueRecord.id}, '{departureDate}')
+", conn);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static List<DataClasses.MessageInfo> GetMessageInfo(int reader_id=-1)
+        {
+            connect();
+            cmd = new SqliteCommand($@"
+SELECT Reader.FIO, Reader.Date_of_birth, Reader.Email, Book.Name, Author.FIO, Genre.Name_genre, Message_type.Mes_type, Departure_date, Return_date
 FROM Message
 LEFT JOIN Issue_Record ON Issue_Record.idIssue_Record = Message.Issue_Record_idIssue_Record
 LEFT JOIN Book ON  Book.idBook = Issue_Record.Book_idBook
@@ -169,6 +232,8 @@ LEFT JOIN Reader ON  Reader.idReader = Issue_Record.Reader_idReader
 LEFT JOIN Author ON Author.idAuthor = Book.Author_idAuthor
 LEFT JOIN Genre ON Genre.idGenre = Book.Genre_idGenre
 LEFT JOIN Message_type ON Message_type.idMessage_type=Message.Message_type_idMessage_type
+WHERE ({reader_id} = -1 OR Issue_Record.Reader_idReader = {reader_id})
+ORDER BY Message.Departure_date DESC
 ", conn);
             var reader = cmd.ExecuteReader();
             var list = new List<DataClasses.MessageInfo>();
@@ -185,12 +250,13 @@ LEFT JOIN Message_type ON Message_type.idMessage_type=Message.Message_type_idMes
                     Genre = reader.GetValue(5).ToString(),
                     MessageType = reader.GetValue(6).ToString(),
                     Departure_date = DateTime.ParseExact(reader.GetValue(7).ToString(), "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
+                    Return_date = DateTime.ParseExact(reader.GetValue(8).ToString(), "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture),
                 });
             }
 
             close();
 
-            return list;
+            return list.OrderBy(x => x.Departure_date).Reverse().ToList();
         }
     }
 }

@@ -18,14 +18,33 @@ namespace Library_kurs.GUI
         public ReportSent()
         {
             InitializeComponent();
-            dateTimePicker1.Text = "01/01/2020 12:00:00 AM";
+
+            var readers = Database.DBClass.GetReaders(true);
+            cmbReaders.DataSource = readers;
+            cmbReaders.DisplayMember = "FIO";
+
+
+            dataGridView1.RowPrePaint += onRowPrePaint;
+
             LoadReport();
+        }
+
+        private void onRowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var row = dataGridView1.Rows[e.RowIndex];
+            var messageInfo = row.DataBoundItem as MessageInfo;
+            if (messageInfo.MessageType == "Штраф")
+                row.DefaultCellStyle.BackColor = Color.Red;
+            if (messageInfo.MessageType == "Уведомление")
+                row.DefaultCellStyle.BackColor = Color.Orange;
+            if (messageInfo.MessageType == "Напоминание")
+                row.DefaultCellStyle.BackColor = Color.Yellow;
         }
 
         private void LoadReport()
         {
             dataGridView1.AutoGenerateColumns = true;
-            var list = Database.DBClass.GetMessageInfo();
+            var list = Database.DBClass.GetMessageInfo((cmbReaders.SelectedValue as DataClasses.Reader).id);
             var bindindList = new BindingList<DataClasses.MessageInfo>(list);
             dataGridView1.DataSource = bindindList;
         }
@@ -38,6 +57,17 @@ namespace Library_kurs.GUI
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Database.DBClass.DepartureMessages();
+            LoadReport();
+        }
+
+        private void cmbReaders_SelectedValueChanged(object sender, EventArgs e)
+        {
+            LoadReport();
         }
     }
 }
